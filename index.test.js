@@ -43,3 +43,21 @@ describe('POST /echo', () => {
     expect(res.body).toEqual({ received: payload });
   });
 });
+
+describe('GET /notfound', () => {
+  it('should respond with 404 and custom not found message', async () => {
+    const res = await request(app).get('/notfound');
+    expect(res.statusCode).toBe(404);
+    expect(res.text).toBe('404 Not Found: The page you are looking for does not exist.');
+  });
+});
+
+describe('GET /error', () => {
+  it('should respond with 500 and custom error message', async () => {
+    // Temporarily add a route that throws an error
+    app.get('/error', (req, res) => { throw new Error('Test error'); });
+    const res = await request(app).get('/error');
+    expect(res.statusCode).toBe(500);
+    expect(res.text).toBe('500 Internal Server Error: Something went wrong!');
+  });
+});
