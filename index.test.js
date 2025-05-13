@@ -17,3 +17,20 @@ describe('GET /', () => {
     expect(res.statusCode).toBe(200);
   });
 });
+
+describe('GET /about', () => {
+  it('should respond with 200 OK and about message', async () => {
+    const res = await request(app).get('/about');
+    expect(res.statusCode).toBe(200);
+    expect(res.text).toBe('This is the about page.');
+  });
+});
+
+describe('GET /health', () => {
+  it('should respond with 200 OK and health status', async () => {
+    const res = await request(app).get('/health');
+    expect(res.statusCode).toBe(200);
+    expect(res.body.status).toBe('ok');
+    expect(res.body.date).toBeDefined();
+  });
+});
