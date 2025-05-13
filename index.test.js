@@ -34,3 +34,12 @@ describe('GET /health', () => {
     expect(res.body.date).toBeDefined();
   });
 });
+
+describe('POST /echo', () => {
+  it('should respond with the same JSON data sent', async () => {
+    const payload = { message: 'Hello, Jenkins!' };
+    const res = await request(app).post('/echo').send(payload);
+    expect(res.statusCode).toBe(200);
+    expect(res.body).toEqual({ received: payload });
+  });
+});
