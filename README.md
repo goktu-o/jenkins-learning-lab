@@ -10,7 +10,7 @@ This is a minimal Node.js Express web project designed for learning Jenkins auto
    ```
 2. Start the server:
    ```sh
-   node index.js
+   npm start
    ```
 3. Visit [http://localhost:3000](http://localhost:3000) in your browser.
 
